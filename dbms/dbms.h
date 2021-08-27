@@ -42,7 +42,7 @@ Table table_consructor(FILE *fileTbl, __uint128_t pk)
     return table;
 }
 
-Table openTable(string tableName)
+Table *openTable(string tableName)
 {
     string fileName = "..//.records//";
     strcat(fileName, tableName);
@@ -51,10 +51,16 @@ Table openTable(string tableName)
     FILE *fileTbl = tryOpening(fileName, fileMode);
 
     __uint128_t pk = getLastPK(tableName);
+    if(pk == 0)
+    {
+        //createTable();
+    }
 
     Table table; //= table_constructor(fileTbl,...);
-    return table;
+    return &table;
 }
+
+
 
 FILE *tryOpening(string fileName, string fileMode)
 {
@@ -66,13 +72,25 @@ FILE *tryOpening(string fileName, string fileMode)
     return fp;
 }
 
-void closeTable(Table table)
+
+
+
+
+
+void closeTable(Table *table)
 {
-    FILE *fp = table.fileTbl;
-    fclose(fp);
+    fclose(table->fileTbl);
 }
+
+
+
+
+
+
+
 
 __uint128_t getLastPK(string tableName)
 {
+    Database db;
     return 0;
 }
