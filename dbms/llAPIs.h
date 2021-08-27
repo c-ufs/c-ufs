@@ -20,11 +20,11 @@
 #endif
 
 // For Table
-Table table_constructor(FILE *fileTbl, __uint128_t pk)
+Table *table_constructor(FILE *fileTbl, __uint128_t pk)
 {
-    Table table;
-    table.fileTbl = fileTbl;
-    table.pk = pk;
+    Table *table;
+    table->fileTbl = fileTbl;
+    table->pk = pk;
 
     return table;
 }
