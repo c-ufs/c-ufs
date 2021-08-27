@@ -8,6 +8,11 @@
     #define INCLUDEDdbms
 #endif
 
+#ifndef INCLUDEDtypedefs
+    #include "..//dbms//typedefs.h"
+    #define INCLUDEDtypedefs
+#endif
+
 //Primary Data Files
 #ifndef INCLUDEDSTDIO_H
     #include <stdio.h>
