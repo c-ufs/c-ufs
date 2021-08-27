@@ -1,35 +1,21 @@
-#ifndef INCLUDEDcDataTypes
-    #include "..//headers//cDataTypes.h"
-    #define INCLUDEDcDataTypes
-#endif
-#ifndef INCLUDEDtypedefs
-    #include "..//dbms//typedefs.h"
-    #define INCLUDEDtypedefs
-#endif
-#ifndef INCLUDEDSTDIO_H
-    #include <stdio.h>
-    #define INCLUDEDSTDIO_H
-#endif
-#ifndef INCLUDEDSTRING_H
-    #include <string.h>
-    #define INCLUDEDSTRING_H
-#endif
-#ifndef INCLUDEDSTDLIB_H
-    #include <stdlib.h>
-    #define INCLUDEDSTDLIB_H
-#endif
+#include "llAPIs.h"
 
-Table table_constructor(FILE *fileTbl, __uint128_t pk)
+// Usage :: Database *db = getConnection(string databaseName, string userName, string password);
+Database *getConnection(string databaseName, string userName, string password)
 {
-    Table table;
-    table.fileTbl = fileTbl;
-    table.pk = pk;
+    Database db;
+    db.DB_STATUS = 0;
 
-    return table;
+    if(db.DB_STATUS)
+        return &db;
 }
 
+//For Table
+
+// Usage :: Table *table = openTable(string tableName);
 Table *openTable(string tableName)
 {
+    //if(CONN == 1)
     string fileName = "..//.records//";
     strcat(fileName, tableName);
     strcat(fileName, ".db");
@@ -46,31 +32,11 @@ Table *openTable(string tableName)
     return &table;
 }
 
-FILE *tryOpening(string fileName, string fileMode)
-{
-    FILE *fp = fopen(fileName, fileMode);
-
-    if(fp == NULL)
-        perror("Exiting....\nError :"), exit(1);
-
-    return fp;
-}
-
+// Usage :: int res = closeTable(Table *table);
 int closeTable(Table *table)
 {
     if(fclose(table->fileTbl))
         return 1;
     return 0;
 }
-
-__uint128_t getLastPK(string tableName)
-{
-    Database db;
-    return 0;
-}
-
-__uint128_t createTable(string tableName)
-{
-    //create table logic
-    return 1;
-}
+//End For Table
