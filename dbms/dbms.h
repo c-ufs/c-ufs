@@ -39,44 +39,38 @@ Table *openTable(string tableName)
     __uint128_t pk = getLastPK(tableName);
     if(pk == 0)
     {
-        //createTable();
+        pk = createTable(tableName);
     }
 
     Table table = table_constructor(fileTbl, pk);
     return &table;
 }
 
-
-
 FILE *tryOpening(string fileName, string fileMode)
 {
     FILE *fp = fopen(fileName, fileMode);
 
     if(fp == NULL)
-        perror("Exiting....\nFILE error :"), exit(1);
+        perror("Exiting....\nError :"), exit(1);
 
     return fp;
 }
 
-
-
-
-
-
-void closeTable(Table *table)
+int closeTable(Table *table)
 {
-    fclose(table->fileTbl);
+    if(fclose(table->fileTbl))
+        return 1;
+    return 0;
 }
-
-
-
-
-
-
-
 
 __uint128_t getLastPK(string tableName)
 {
     Database db;
     return 0;
+}
+
+__uint128_t createTable(string tableName)
+{
+    //create table logic
+    return 1;
 }
