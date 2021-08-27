@@ -3,11 +3,11 @@
 // Usage :: Database *db = getConnection(string databaseName, string userName, string password);
 Database *getConnection(string databaseName, string userName, string password)
 {
-    Database db;
-    db.DB_STATUS = 0;
+    Database *db;
+    db->DB_STATUS = 0;
 
-    if(db.DB_STATUS)
-        return &db;
+    if(db->DB_STATUS)
+        return db;
 }
 
 //For Table
@@ -28,8 +28,8 @@ Table *openTable(string tableName)
         pk = createTable(tableName);
     }
 
-    Table table = table_constructor(fileTbl, pk);
-    return &table;
+    Table *table = table_constructor(fileTbl, pk);
+    return table;
 }
 
 // Usage :: int res = closeTable(Table *table);
