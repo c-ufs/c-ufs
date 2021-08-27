@@ -18,3 +18,8 @@
     #include <string.h>
     #define INCLUDEDSTRING_H
 #endif
+
+#ifndef INCLUDEDSTDLIB_H
+    #include <stdlib.h>
+    #define INCLUDEDSTDLIB_H
+#endif
