@@ -2,38 +2,24 @@
     #include "..//headers//cDataTypes.h"
     #define INCLUDEDcDataTypes
 #endif
-
-// #region -> Primary Data Files
+#ifndef INCLUDEDtypedefs
+    #include "..//dbms//typedefs.h"
+    #define INCLUDEDtypedefs
+#endif
 #ifndef INCLUDEDSTDIO_H
     #include <stdio.h>
     #define INCLUDEDSTDIO_H
 #endif
-
 #ifndef INCLUDEDSTRING_H
     #include <string.h>
     #define INCLUDEDSTRING_H
 #endif
-
 #ifndef INCLUDEDSTDLIB_H
     #include <stdlib.h>
     #define INCLUDEDSTDLIB_H
 #endif
-// #endregion -> Primary Data Files
 
-typedef struct st_Database
-{
-    FILE *fileDb;
-    __uint128_t lastpk;
-    char name[25];
-} Database;
-
-typedef struct st_Table
-{
-    FILE *fileTbl;
-    __uint128_t pk;
-} Table;
-
-Table table_consructor(FILE *fileTbl, __uint128_t pk)
+Table table_constructor(FILE *fileTbl, __uint128_t pk)
 {
     Table table;
     table.fileTbl = fileTbl;
@@ -56,7 +42,7 @@ Table *openTable(string tableName)
         //createTable();
     }
 
-    Table table; //= table_constructor(fileTbl,...);
+    Table table = table_constructor(fileTbl, pk);
     return &table;
 }
 
